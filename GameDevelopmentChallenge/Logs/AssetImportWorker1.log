@@ -1,20 +1,624 @@
 Using pre-set license
 Built from '2022.3/staging' branch; Version is '2022.3.31f1 (4ede2d13e8b4) revision 5168685'; Using compiler version '192829333'; Build Type 'Release'
 OS: 'Windows 11  (10.0.22631) 64bit Professional' Language: 'tr' Physical Memory: 32581 MB
-received signal from system: SIGSEGV
-Obtained 14 stack frames
-RtlLookupFunctionEntry returned NULL function. Aborting stack walk.
-0x00007ff76c50a2fd (Unity) StackWalker::GetCurrentCallstack
-0x00007ff76c50f3c9 (Unity) StackWalker::ShowCallstack
-0x00007ff76d4fe701 (Unity) GetStacktrace
-0x00007ff76c50e816 (Unity) winutils::PrintStackTrace
-0x00007ff76c509b2c (Unity) winutils::CrashHandler::DefaultSignalHandler
-0x00007ff76e946780 (Unity) seh_filter_exe
-0x00007ff76ea0e4a8 (Unity) `__scrt_common_main_seh'::`1'::filt$0
-0x00007ff76e910120 (Unity) _C_specific_handler
-0x00007ffe7985543f (ntdll) _chkstk
-0x00007ffe797ce886 (ntdll) RtlFindCharInUnicodeString
-0x00007ffe7985443e (ntdll) KiUserExceptionDispatcher
-0x00007ff76d8b85c7 (Unity) WorkerLicense::HasEntitlement
-<Missing stacktrace information>
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
 
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2022.3.31f1-x86_64\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker1
+-projectPath
+C:/Users/FARK/Desktop/SixPawns/myDemoCaseG/GameDevelopmentChallenge
+-logFile
+Logs/AssetImportWorker1.log
+-srvPort
+57146
+Successfully changed project path to: C:/Users/FARK/Desktop/SixPawns/myDemoCaseG/GameDevelopmentChallenge
+C:/Users/FARK/Desktop/SixPawns/myDemoCaseG/GameDevelopmentChallenge
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [31496] Host "[IP] 192.168.1.120 [Port] 0 [Flags] 2 [Guid] 3358935409 [EditorId] 3358935409 [Version] 1048832 [Id] WindowsEditor(7,MertPc) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [31496] Host "[IP] 192.168.1.120 [Port] 0 [Flags] 2 [Guid] 3358935409 [EditorId] 3358935409 [Version] 1048832 [Id] WindowsEditor(7,MertPc) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+Refreshing native plugins compatible for Editor in 19.50 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.31f1 (4ede2d13e8b4)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.31f1-x86_64/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/FARK/Desktop/SixPawns/myDemoCaseG/GameDevelopmentChallenge/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 4070 (ID=0x2786)
+    Vendor:   NVIDIA
+    VRAM:     12026 MB
+    Driver:   31.0.15.4633
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.31f1-x86_64/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.31f1-x86_64/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.31f1-x86_64/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56916
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.31f1-x86_64/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.31f1-x86_64/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.31f1-x86_64/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.013758 seconds.
+- Loaded All Assemblies, in  0.520 seconds
+Native extension for WindowsStandalone target not found
+[usbmuxd] Start listen thread
+[usbmuxd] Listen thread started
+Native extension for iOS target not found
+Native extension for Android target not found
+Android Extension - Scanning For ADB Devices 310 ms
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.801 seconds
+Domain Reload Profiling: 1319ms
+	BeginReloadAssembly (188ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (42ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (76ms)
+	LoadAllAssembliesAndSetupDomain (201ms)
+		LoadAssemblies (189ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (195ms)
+			TypeCache.Refresh (193ms)
+				TypeCache.ScanAssembly (171ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (802ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (741ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (423ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (3ms)
+			ProcessInitializeOnLoadAttributes (246ms)
+			ProcessInitializeOnLoadMethodAttributes (65ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.891 seconds
+Refreshing native plugins compatible for Editor in 14.77 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+Package Manager log level set to [2]
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.835 seconds
+Domain Reload Profiling: 1722ms
+	BeginReloadAssembly (144ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (5ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (19ms)
+	RebuildCommonClasses (32ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (41ms)
+	LoadAllAssembliesAndSetupDomain (656ms)
+		LoadAssemblies (481ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (264ms)
+			TypeCache.Refresh (218ms)
+				TypeCache.ScanAssembly (191ms)
+			ScanForSourceGeneratedMonoScriptInfo (37ms)
+			ResolveRequiredComponents (9ms)
+	FinalizeReload (835ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (702ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (34ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (98ms)
+			ProcessInitializeOnLoadAttributes (423ms)
+			ProcessInitializeOnLoadMethodAttributes (138ms)
+			AfterProcessingInitializeOnLoad (5ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 14.69 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 6016 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 188 unused Assets / (7.0 MB). Loaded Objects now: 6368.
+Memory consumption went from 214.5 MB to 207.5 MB.
+Total: 10.592100 ms (FindLiveObjects: 0.528600 ms CreateObjectMapping: 0.463100 ms MarkObjects: 7.060700 ms  DeleteObjects: 2.537700 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 72b91833f83ae208fae7752999fa3104 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 20313.546134 seconds.
+  path: Assets/Materials/Plane.mat
+  artifactKey: Guid(030fc4d26c3ac174d981b6f84c1e4fa2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Materials/Plane.mat using Guid(030fc4d26c3ac174d981b6f84c1e4fa2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'bc400fea2dc31b780504b664ae6be278') in 0.136812 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/Mesh/bridle_msh4.asset
+  artifactKey: Guid(666d4d9ff83641c4882efc120af81892) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/Mesh/bridle_msh4.asset using Guid(666d4d9ff83641c4882efc120af81892) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '2a31cac87cb429e7f48f85eb8423d8cb') in 0.014101 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/Mesh/tower-square-build-a.asset
+  artifactKey: Guid(317128a20ffedf74b8e516837f2b910f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/Mesh/tower-square-build-a.asset using Guid(317128a20ffedf74b8e516837f2b910f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '5dd59880407ea1002e4b55d866133295') in 0.011544 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/PrefabInstance/Swordsman.prefab
+  artifactKey: Guid(b3f43f9d50074c1408a888b6a98cb213) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/PrefabInstance/Swordsman.prefab using Guid(b3f43f9d50074c1408a888b6a98cb213) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '354caa8c6b88ae4ee814f7975b25bc51') in 0.054074 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 131
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/PrefabInstance/Archer.prefab
+  artifactKey: Guid(406970a2fdb08874f8e9b86d55b788a5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/PrefabInstance/Archer.prefab using Guid(406970a2fdb08874f8e9b86d55b788a5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '592ddf039278d4482665e4b2a1eff389') in 0.021272 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 124
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/Mesh/Quiver.asset
+  artifactKey: Guid(35fb3034c270b024ca2982bf704bb944) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/Mesh/Quiver.asset using Guid(35fb3034c270b024ca2982bf704bb944) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '4c5779caa2cab9f2ef244cf99c3f3a55') in 0.012112 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/AnimationClip/Giant_Punch.anim
+  artifactKey: Guid(bdbaf526866766840b6cc3334720d8ae) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/AnimationClip/Giant_Punch.anim using Guid(bdbaf526866766840b6cc3334720d8ae) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'b772a8380c12bd66fcebacfdac43bd8f') in 0.019613 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/Texture2D/ColorPalette.png
+  artifactKey: Guid(22b9df1af79086945ba989ae6953be90) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/Texture2D/ColorPalette.png using Guid(22b9df1af79086945ba989ae6953be90) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'f47aa976f52460a831f30ea3f8fcb6c2') in 0.047266 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/AnimationClip/Death.anim
+  artifactKey: Guid(f645c0c91b447464f8a4da051688b942) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/AnimationClip/Death.anim using Guid(f645c0c91b447464f8a4da051688b942) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '70cdd732c31ef3802014fdf240833949') in 0.020925 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scenes/GameScene.unity
+  artifactKey: Guid(99c9720ab356a0642a771bea13969a05) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Scenes/GameScene.unity using Guid(99c9720ab356a0642a771bea13969a05) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '4df89e65b14d4073742a63b3781606ad') in 0.010742 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/Texture2D/ArabianHorseJockey_HorseArabMaterial_AlbedoTransparency.png
+  artifactKey: Guid(ace737cc5ca9ae04eaac72e0beac638a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/Texture2D/ArabianHorseJockey_HorseArabMaterial_AlbedoTransparency.png using Guid(ace737cc5ca9ae04eaac72e0beac638a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '1e17e18a509b07253349d2c662f06265') in 0.024242 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/Shader/Universal Render Pipeline_Lit.shader
+  artifactKey: Guid(046446706ba04b04096defe3892ed8f9) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/Shader/Universal Render Pipeline_Lit.shader using Guid(046446706ba04b04096defe3892ed8f9) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '27b3f1d6340496e767ab829206098c99') in 0.015797 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Scripts/Base/Singleton.cs
+  artifactKey: Guid(867978257165cbe40afde9de9093f12d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Scripts/Base/Singleton.cs using Guid(867978257165cbe40afde9de9093f12d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'd16f3c4a8d440c182bef112ff46da706') in 0.013511 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Materials/Brown.mat
+  artifactKey: Guid(4b3b37926d04b50409ef9ff795d68078) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Materials/Brown.mat using Guid(4b3b37926d04b50409ef9ff795d68078) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'a0a90e429f2662c462c70d42ff828694') in 0.014168 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/AnimationClip/Slash.anim
+  artifactKey: Guid(2ce2006d4d6544b41a7f18e72edeca24) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/AnimationClip/Slash.anim using Guid(2ce2006d4d6544b41a7f18e72edeca24) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '90f05b9de0ef87f27360a532308b9c4a') in 0.017994 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/AnimationClip/Salute.anim
+  artifactKey: Guid(86fd90922feaef04587829255205f381) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/AnimationClip/Salute.anim using Guid(86fd90922feaef04587829255205f381) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '934d9cd0c88ddf332d0884346a4d10ec') in 0.018763 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/Mesh/L_Arm_2.asset
+  artifactKey: Guid(925cc317d8413de45b2bfb0835ab4f07) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/Mesh/L_Arm_2.asset using Guid(925cc317d8413de45b2bfb0835ab4f07) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '893bb579910640439d92a497ecdffaf9') in 0.016051 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/Mesh/rock-sand-a.asset
+  artifactKey: Guid(e1e8d189a406cb34bb86f38508b98f85) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/Mesh/rock-sand-a.asset using Guid(e1e8d189a406cb34bb86f38508b98f85) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'd8d28e330561bb72daece9def3ea69b8') in 0.015906 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/Sprite/bar.asset
+  artifactKey: Guid(2a3f84220477e27459b0fdc2e490eeca) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/Sprite/bar.asset using Guid(2a3f84220477e27459b0fdc2e490eeca) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '7afae8e93daa23fd38a90fdd875a4b28') in 0.016514 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/AnimatorOverrideController/Giant.overrideController
+  artifactKey: Guid(75323cc45ed43434783ceb04a1bc5579) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/AnimatorOverrideController/Giant.overrideController using Guid(75323cc45ed43434783ceb04a1bc5579) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '71a7537df1f0092ccdabe74a526065a2') in 0.037426 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 19
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/Texture2D/SadleNM.png
+  artifactKey: Guid(000ea2907b11b564796fc91a89f00509) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/Texture2D/SadleNM.png using Guid(000ea2907b11b564796fc91a89f00509) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '9cb63d8bbcaac5fdeb06575414cea090') in 0.030193 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000049 seconds.
+  path: Assets/Resources/BillingMode.json
+  artifactKey: Guid(7d12363afcdf2814eba139eda15fd3a8) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Resources/BillingMode.json using Guid(7d12363afcdf2814eba139eda15fd3a8) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '933171d9774105bce46776a23080dd71') in 0.013748 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/Mesh/Body.asset
+  artifactKey: Guid(dba5738a991191a478abeb9d4f00ca91) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/Mesh/Body.asset using Guid(dba5738a991191a478abeb9d4f00ca91) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '7a31d5fd3dab6581b731dfbff5a8a71c') in 0.013860 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/Mesh/Armor.asset
+  artifactKey: Guid(6b03f70ce0cc8ac4db05149cd877ae7f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/Mesh/Armor.asset using Guid(6b03f70ce0cc8ac4db05149cd877ae7f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '0cda0fa4e954fd0cba1122c4d829cb48') in 0.013579 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/Mesh/Bow.asset
+  artifactKey: Guid(be6569b2a6f0364498a8938d74f9f4f2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/Mesh/Bow.asset using Guid(be6569b2a6f0364498a8938d74f9f4f2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '05f0a361c5968b1dd409979ce705a322') in 0.012325 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/Mesh/Head.asset
+  artifactKey: Guid(af9178e6c3479f343b8d376253d0344b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/Mesh/Head.asset using Guid(af9178e6c3479f343b8d376253d0344b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '7c547448c03d7f0920a3c05377a08afb') in 0.012127 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/Material/SadleMaterial.mat
+  artifactKey: Guid(36ceed2937e055a479723ceee63878f1) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/Material/SadleMaterial.mat using Guid(36ceed2937e055a479723ceee63878f1) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '0c20599a5adeca6a27469d4b97fb26c2') in 0.028283 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/Material/HpBar.mat
+  artifactKey: Guid(c2f18a4d804637a46a1481562d47dd1a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/Material/HpBar.mat using Guid(c2f18a4d804637a46a1481562d47dd1a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '8abf43465738b9001e58d91de8b6c5eb') in 0.016607 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/Mesh/tower-square-top-c.asset
+  artifactKey: Guid(b4ab72c0384504348894abddf117c89a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/Mesh/tower-square-top-c.asset using Guid(b4ab72c0384504348894abddf117c89a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'c8f1e344f1f5ccd1715791e2f4524e75') in 0.010621 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/Mesh/Arab_HorseB1.asset
+  artifactKey: Guid(7e031f2485fdbf447a9081b910c1bdc2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/Mesh/Arab_HorseB1.asset using Guid(7e031f2485fdbf447a9081b910c1bdc2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '47026688b3e178fb875d842952f9f3d2') in 0.012485 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/AnimationClip/Run_Giant.anim
+  artifactKey: Guid(e02e12540e3fef542b3f8b5c3de01d31) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/AnimationClip/Run_Giant.anim using Guid(e02e12540e3fef542b3f8b5c3de01d31) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '4393d5c88fc6fe332e59213a1b74c86a') in 0.014559 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/Mesh/tower-square-roof-b.asset
+  artifactKey: Guid(271c0088690536f4b92dd0d1ce6407bc) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/Mesh/tower-square-roof-b.asset using Guid(271c0088690536f4b92dd0d1ce6407bc) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '8a5908abd5744409bf651ff329033285') in 0.010658 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000135 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/AnimatorController/Horse.controller
+  artifactKey: Guid(8834e5d24ea54854a8cad6e43293eb18) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/AnimatorController/Horse.controller using Guid(8834e5d24ea54854a8cad6e43293eb18) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '3f5e59f7f09816cdb341a6c11b1d6add') in 0.074748 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/Mesh/R_Arm_1.asset
+  artifactKey: Guid(405587e4fcedc1c48b5b80f4f3c5619a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/Mesh/R_Arm_1.asset using Guid(405587e4fcedc1c48b5b80f4f3c5619a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'b8242fd96c55f1c9a9a941f1ac50fc22') in 0.013579 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/PrefabInstance/TutorialCharacter.prefab
+  artifactKey: Guid(5083727fe9754024ba50316a955e7e66) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/PrefabInstance/TutorialCharacter.prefab using Guid(5083727fe9754024ba50316a955e7e66) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '9ce619b8115a08035ed0f3abedeca5d1') in 0.015737 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 103
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/AnimationClip/Archer.anim
+  artifactKey: Guid(f4859197d340bcf45ad0a711eb538068) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/AnimationClip/Archer.anim using Guid(f4859197d340bcf45ad0a711eb538068) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'fa665c2354c37c16481079d264872f22') in 0.051033 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/Mesh/Helmet.asset
+  artifactKey: Guid(ee59e4c333638d744992064c65c186da) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/Mesh/Helmet.asset using Guid(ee59e4c333638d744992064c65c186da) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'aeaae33541cdbd4093453a152a43947b') in 0.137875 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/Material/verde.mat
+  artifactKey: Guid(d92331d05b796a344920faf5acf20c55) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/Material/verde.mat using Guid(d92331d05b796a344920faf5acf20c55) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '4123cd0523d9fdcbf039854855fedbce') in 0.126267 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.622779 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/Sprite
+  artifactKey: Guid(6ed52e06056bbc94b820506598ce890c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/Sprite using Guid(6ed52e06056bbc94b820506598ce890c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'a8c1ec3e18ff62d4e912bd929b0d93c4') in 0.011104 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy
+  artifactKey: Guid(8c40ed63321b6774da56aa7e9d5e5063) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy using Guid(8c40ed63321b6774da56aa7e9d5e5063) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '37501985cbfc3262f8d0deb7a7d21479') in 0.011105 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/RenderTexture
+  artifactKey: Guid(c6008e248a7d80d458782e965a2ba024) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/RenderTexture using Guid(c6008e248a7d80d458782e965a2ba024) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'a903a27c6a81c8dd600d3a3eac00cc90') in 0.112806 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/PrefabInstance
+  artifactKey: Guid(ff3cc056bacb40d4bab9f8a4fcd83e92) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/PrefabInstance using Guid(ff3cc056bacb40d4bab9f8a4fcd83e92) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '9c43818b965f0eedf4cc7326d9f9eceb') in 0.011961 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Plugins/EXPORTS/OneTapArmy/AnimatorController
+  artifactKey: Guid(3d935f8be3f8a7248b87a2aaf0a85231) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/EXPORTS/OneTapArmy/AnimatorController using Guid(3d935f8be3f8a7248b87a2aaf0a85231) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '245c8a3bc7e092f6473411f7f4fe28cb') in 0.011082 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 9.552138 seconds.
+  path: Assets/Settings/URP-Performant.asset
+  artifactKey: Guid(d0e2fc18fe036412f8223b3b3d9ad574) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Settings/URP-Performant.asset using Guid(d0e2fc18fe036412f8223b3b3d9ad574) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '30ec4f5eb94496ba254be2cc2b416a7e') in 0.345829 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 80
+========================================================================
+Received Prepare
+Refreshing native plugins compatible for Editor in 10.14 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 140 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 39 unused Assets / (3.3 MB). Loaded Objects now: 6473.
+Memory consumption went from 133.7 MB to 130.4 MB.
+Total: 7.927800 ms (FindLiveObjects: 0.345600 ms CreateObjectMapping: 0.199800 ms MarkObjects: 5.971900 ms  DeleteObjects: 1.408600 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 72b91833f83ae208fae7752999fa3104 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 30.441727 seconds.
+  path: Assets/Materials/ColorPalette.mat
+  artifactKey: Guid(abb6e9c24793eca47a55d27d534b61c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/ColorPalette.mat using Guid(abb6e9c24793eca47a55d27d534b61c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'd28304c99713650ddaa0b68b186936db') in 0.529238 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: Bir iþ parçacýðý çýkýþý veya bir uygulama isteði nedeniyle G/Ç iþlemi iptal edildi.
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
