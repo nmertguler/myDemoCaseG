@@ -2,7 +2,8 @@ public enum EnumArmyType
 {
     none,
     player,
-    enemy
+    enemy,
+    enemy2
 }
 
 public enum EnumUnitType

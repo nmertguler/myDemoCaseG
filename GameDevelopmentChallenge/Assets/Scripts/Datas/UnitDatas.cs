@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "unitName", menuName = "ScriptableObjects/UnitDatas", order = 1)]
-public class UnitDatas : ScriptableObject
+[CreateAssetMenu(fileName = "SoldierDatas", menuName = "ScriptableObjects/Datas/SoldierDatas", order = 1)]
+public class SoldierDatas : ScriptableObject
 {
-    public List<UnitVariables> unityVariablesLevelBase;
+    public List<SoldierVariables> unityVariablesLevelBase;
 }
 
 [Serializable]
-public class UnitVariables
+public class SoldierVariables
 {
     public int levelNumber;
-    public EnumUnitType unitType;
-
+    public float attackSpeedMultiplier;
+    public float hpMultiplier;
 }

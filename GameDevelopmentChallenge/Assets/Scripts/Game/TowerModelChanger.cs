@@ -18,7 +18,11 @@ public class TowerModelChanger : MonoBehaviour
     {
         foreach (var item in towerModelVariableList)
         {
-            item.towerModel.SetActive(false);
+            if(item.towerModel.activeInHierarchy)
+            {
+                item.towerModel.SetActive(false);
+            }
+            
         }
 
         ClassTowerModelVariables ctmv = towerModelVariableList.Find(a => a.levelNumber == towerLevelNumber);
