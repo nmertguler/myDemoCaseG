@@ -5,6 +5,7 @@ using UnityEngine;
 public class PoolController : MonoBehaviour
 {
     [SerializeField] ObjectPool soldierPool;
+    [SerializeField] ObjectPool arrowPool;
 
     public static PoolController Instance;
     private void Awake()
@@ -21,6 +22,18 @@ public class PoolController : MonoBehaviour
         set
         {
             soldierPool.ReturnToPool(value);
+        }
+    }
+
+    public GameObject Arrow
+    {
+        get
+        {
+            return arrowPool.GetFromPool();
+        }
+        set
+        {
+            arrowPool.ReturnToPool(value);
         }
     }
 }

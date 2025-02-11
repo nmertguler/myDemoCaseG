@@ -294,7 +294,8 @@ GameObject:
   - component: {fileID: 5419897303915601098}
   - component: {fileID: 1081355874256167564}
   - component: {fileID: 2179701444492034067}
-  m_Layer: 0
+  - component: {fileID: 250957495507565293}
+  m_Layer: 11
   m_Name: Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -341,7 +342,7 @@ MonoBehaviour:
   towerModelChanger: {fileID: 1081355874256167564}
   towerSoldierSpawner: {fileID: 2179701444492034067}
   towerData: {fileID: 11400000, guid: 4c6084baaf1cab648923e44606db33d2, type: 2}
-  baseSpawnTime: 5
+  baseSpawnTime: 3
   spawnDot: {fileID: 8642193946181894823}
 --- !u!114 &5419897303915601098
 MonoBehaviour:
@@ -474,6 +475,27 @@ MonoBehaviour:
   - levelNumber: 1
     soldierType: 2
   activeSoldier: []
+--- !u!65 &250957495507565293
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603865065073811391}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.2827425, y: 1.4932877, z: 0.9060273}
+  m_Center: {x: -0.013456345, y: 0.60810465, z: 0.04698634}
 --- !u!1 &822016154059058260
 GameObject:
   m_ObjectHideFlags: 0
@@ -2231,13 +2253,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5788508560832999224}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.00000035762784}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3980607375742510840}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &5829260825368785758
 GameObject:
   m_ObjectHideFlags: 0

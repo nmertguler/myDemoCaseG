@@ -8,6 +8,8 @@ public class LevelHolder : MonoBehaviour
 
     [Space(5)]
     public TowerController playerTower;
+    public TowerController enemyTower1;
+    public TowerController enemyTower2;
 
     public static LevelHolder Instance;
     private void Awake()

@@ -64,6 +64,11 @@ public class ObjectPool : MonoBehaviour
 
     public void ReturnToPool(GameObject obj)
     {
+        if(obj.TryGetComponent<SoldierController>(out SoldierController soldierController))
+        {
+            soldierController.SoldierReset();
+        }
+
         obj.transform.SetParent(transform);
         obj.SetActive(false);
         pool.Enqueue(obj);

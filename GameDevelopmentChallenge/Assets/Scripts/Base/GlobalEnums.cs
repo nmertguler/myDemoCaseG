@@ -25,3 +25,12 @@ public enum EnumTowerLevel
     level4,
     level5
 }
+
+public enum EnumSoldierStates
+{
+    none,
+    idle,
+    move,
+    attack,
+    dead
+}

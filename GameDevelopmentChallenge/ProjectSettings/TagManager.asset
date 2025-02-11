@@ -13,10 +13,10 @@ TagManager:
   - UI
   - WarAreaPlane
   - OtherGrounds
-  - 
-  - 
-  - 
-  - 
+  - PlayerSoldier
+  - EnemySoldier1
+  - EnemySoldier2
+  - Tower
   - 
   - 
   - 

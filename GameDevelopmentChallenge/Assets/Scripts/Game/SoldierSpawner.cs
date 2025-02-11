@@ -36,7 +36,7 @@ public class SoldierSpawner : MonoBehaviour
         bool maxSoldierControl = activeSoldier.Count >= towerController.GetActiveMaxSoldierValue();
         bool levelEnd = false;
 
-        if(maxSoldierControl == false && levelEnd == false)
+        if (maxSoldierControl == false && levelEnd == false)
         {
             timer += Time.deltaTime;
             float fillAmount = timer / currentSpawnValue;
@@ -58,12 +58,13 @@ public class SoldierSpawner : MonoBehaviour
         GameObject tempSoldier = PoolController.Instance.Soldier;
 
         tempSoldier.transform.SetParent(soldierHolder);
-        tempSoldier.transform.position = spawnDotTransform.position 
-            + new Vector3(UnityEngine.Random.Range(-.5F,.5F),0, UnityEngine.Random.Range(-.2F, .2F));
+        tempSoldier.transform.position = spawnDotTransform.position
+            + new Vector3(UnityEngine.Random.Range(-.5F, .5F), 0, UnityEngine.Random.Range(-.2F, .2F));
+        tempSoldier.transform.rotation = spawnDotTransform.rotation;
 
-        // todo: born effect
+        // todo: EnumUnitType activeRandomUnitType 
 
-        // todo: tempsoldier unit type guncelle
+        tempSoldier.GetComponent<SoldierController>().SoldierCreate(towerController.GetArmyType(), gameObject , EnumUnitType.archer);
 
         activeSoldier.Add(tempSoldier);
     }
