@@ -1,3 +1,4 @@
+using HighlightPlus;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,16 +26,32 @@ public class TowerController : MonoBehaviour
     [SerializeField] TowerDatas towerData;
     [SerializeField] float baseSpawnTime;
     [SerializeField] Transform spawnDot;
+    [SerializeField] TowerHpSlider towerHpSlider;
+    [SerializeField] HighlightEffect highlightEffect;
 
+    // privates
+    float maxHp = 100;
+    float currentHp = 100;
 
-    private void OnValidate()
+    private void Start()
     {
-        // color change
-        ColorUpdate();
-
-        // level update
-        LevelModelUpdate();
+        LevelVariableUpdate();
+        HpBarUpdate();
     }
+
+    //private void OnValidate() => UnityEditor.EditorApplication.delayCall += _OnValidate;
+
+    //private void _OnValidate()
+    //{
+    //    UnityEditor.EditorApplication.delayCall -= _OnValidate;
+    //    if (this == null) return;
+
+    //    // color change
+    //    ColorUpdate();
+
+    //    // level update
+    //    LevelModelUpdate();
+    //}
 
     // tarafina gore kalenin renklerini duzenler
     void ColorUpdate()
@@ -123,7 +140,7 @@ public class TowerController : MonoBehaviour
 
         foreach (var item in activeSoldierList)
         {
-            if(item.TryGetComponent(out SoldierController soldierController))
+            if (item.TryGetComponent(out SoldierController soldierController))
             {
                 soldierController.MoveToTarget(positions[0]);
                 positions.RemoveAt(0);
@@ -132,7 +149,7 @@ public class TowerController : MonoBehaviour
     }
 
     // noktanin etrafindan noktalar secer boylece hareket eden soldier'lar ic ice gecmezler
-    List<Vector3> GetRandomPointsInCircle(Vector3 center, float maxRadius , int count)
+    List<Vector3> GetRandomPointsInCircle(Vector3 center, float maxRadius, int count)
     {
         List<Vector3> points = new List<Vector3>();
 
@@ -159,5 +176,49 @@ public class TowerController : MonoBehaviour
     public EnumArmyType GetArmyType()
     {
         return towerType;
+    }
+
+    public void DeadSoldierRemoveFromList(GameObject deadSoldier)
+    {
+        towerSoldierSpawner.DeadSoldierRemoveFromList(deadSoldier);
+    }
+
+    void LevelVariableUpdate()
+    {
+        float tempMaxHp = maxHp;
+
+        // current hp value update
+        var tempVariable = towerData.towerVariables.Find(a => a.levelNumber == ActiveLevelNumber());
+        maxHp = tempVariable.hpValue;
+
+        currentHp += maxHp - tempMaxHp;
+    }
+
+    void HpBarUpdate()
+    {
+        towerHpSlider.HpBarUpdate(ActiveLevelNumber() , maxHp , currentHp);
+    }
+
+    public void DoDamage(float damageValue)
+    {
+        if(currentHp == 0)
+        {
+            return;
+        }
+
+        currentHp -= damageValue;
+
+        highlightEffect.HitFX();
+
+        if (currentHp <= 0)
+        {
+            currentHp = 0;
+
+            // tower destroy
+            gameObject.layer = LayerMask.NameToLayer("Default");
+            towerSoldierSpawner.enabled = false;
+        }
+
+        HpBarUpdate();
     }
 }

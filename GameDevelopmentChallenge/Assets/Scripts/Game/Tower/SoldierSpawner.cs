@@ -51,11 +51,19 @@ public class SoldierSpawner : MonoBehaviour
 
     void SoldierSpawn()
     {
+        GameObject tempSoldier = PoolController.Instance.Soldier;
+
+        if (activeSoldier.Contains(tempSoldier) || activeSoldierValues.Count == 0)
+        {
+            return;
+        }
+
+
         // timer sifirla
         timer = 0;
         SpawnTimeUpdate();
 
-        GameObject tempSoldier = PoolController.Instance.Soldier;
+
 
         tempSoldier.transform.SetParent(soldierHolder);
         tempSoldier.transform.position = spawnDotTransform.position
@@ -64,7 +72,9 @@ public class SoldierSpawner : MonoBehaviour
 
         // todo: EnumUnitType activeRandomUnitType 
 
-        tempSoldier.GetComponent<SoldierController>().SoldierCreate(towerController.GetArmyType(), gameObject , EnumUnitType.archer);
+        var soldierSpawn = activeSoldierValues[Random.Range(0, activeSoldierValues.Count)];
+
+        tempSoldier.GetComponent<SoldierController>().SoldierCreate(towerController.GetArmyType(), gameObject, soldierSpawn.soldierType, soldierSpawn.levelNumber);
 
         activeSoldier.Add(tempSoldier);
     }
@@ -77,5 +87,23 @@ public class SoldierSpawner : MonoBehaviour
     public List<GameObject> GetActiveSoldierList()
     {
         return activeSoldier;
+    }
+
+    public void DeadSoldierRemoveFromList(GameObject deadSoldier)
+    {
+        while (activeSoldier.Contains(deadSoldier))
+        {
+            activeSoldier.Remove(deadSoldier);
+        }
+
+        List<GameObject> tempActiveSoldier = new List<GameObject>(activeSoldier);
+        foreach (var item in tempActiveSoldier)
+        {
+            if (item.activeSelf == false)
+            {
+
+            }
+        }
+
     }
 }

@@ -6,6 +6,7 @@ public class PoolController : MonoBehaviour
 {
     [SerializeField] ObjectPool soldierPool;
     [SerializeField] ObjectPool arrowPool;
+    [SerializeField] ObjectPool xpPool;
 
     public static PoolController Instance;
     private void Awake()
@@ -34,6 +35,18 @@ public class PoolController : MonoBehaviour
         set
         {
             arrowPool.ReturnToPool(value);
+        }
+    }
+
+    public GameObject Xp
+    {
+        get
+        {
+            return xpPool.GetFromPool();
+        }
+        set
+        {
+            xpPool.ReturnToPool(value);
         }
     }
 }

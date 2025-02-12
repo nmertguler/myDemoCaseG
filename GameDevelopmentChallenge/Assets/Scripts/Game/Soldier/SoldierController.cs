@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
 using DG.Tweening;
+using Unity.Services.Analytics.Internal;
 
 public class SoldierController : MonoBehaviour
 {
@@ -13,12 +14,15 @@ public class SoldierController : MonoBehaviour
     [SerializeField] HpBar hpBar;
 
     [Space(5)]
+    public int soldierLevel;
     [SerializeField] EnumSoldierStates soldierStates;
     [SerializeField] float scanEnemyRadius;
 
     LayerMask enemyLayerMasks;
     Coroutine scanCoroutine;
     GameObject myTower;
+    bool playerSoldier = false;
+    bool givedXp = false;
 
     private void OnEnable()
     {
@@ -28,18 +32,23 @@ public class SoldierController : MonoBehaviour
     {
         StopCoroutine(scanCoroutine);
     }
-    public void SoldierCreate(EnumArmyType armyType, GameObject myTowerObject, EnumUnitType unitType)
+    public void SoldierCreate(EnumArmyType armyType, GameObject myTowerObject, EnumUnitType unitType , int unitLevel)
     {
 
         // my tower
         myTower = myTowerObject;
 
+        // level
+        soldierLevel = unitLevel;
+
         // layer update
+        playerSoldier = false;
         switch (armyType)
         {
             case EnumArmyType.player:
                 gameObject.layer = LayerMask.NameToLayer("PlayerSoldier");
                 enemyLayerMasks = LayerMask.GetMask("EnemySoldier1", "EnemySoldier2", "Tower");
+                playerSoldier = true;
                 break;
             case EnumArmyType.enemy:
                 gameObject.layer = LayerMask.NameToLayer("EnemySoldier1");
@@ -64,6 +73,15 @@ public class SoldierController : MonoBehaviour
     public void SoldierReset()
     {
         soldierStates = EnumSoldierStates.none;
+
+        givedXp = false;
+
+        currentSoldierType.currentHp = currentSoldierType.defaultHp;
+
+        hpBar.gameObject.SetActive(true);
+        hpBar.HpBarUpdate(1);
+
+        
     }
 
     public void SoldierDeath()
@@ -77,6 +95,26 @@ public class SoldierController : MonoBehaviour
         agent.enabled = false;
 
         hpBar.gameObject.SetActive(false);
+
+        transform.DOMoveY(transform.position.y - 3, 2.0F).SetDelay(1.7F).OnComplete( ()=>
+        {
+            ReturnToPool();
+        });
+
+        // remove from tower soldier list
+        if(myTower.TryGetComponent<TowerController>(out TowerController towerController))
+        {
+            towerController.DeadSoldierRemoveFromList(gameObject);
+        }
+    }
+
+    void ReturnToPool()
+    {
+        // reset
+        agent.enabled = true;
+
+        // return to pool
+        PoolController.Instance.Soldier = gameObject;
     }
 
 
@@ -88,6 +126,7 @@ public class SoldierController : MonoBehaviour
         }
 
         soldierStates = EnumSoldierStates.move;
+        agent.enabled = true;
         agent.SetDestination(targetPos);
         currentSoldierType.PlayAnim("run");
 
@@ -96,10 +135,10 @@ public class SoldierController : MonoBehaviour
 
     IEnumerator EnumeratorMoveStart()
     {
-        yield return new WaitUntil(() => agent.velocity.magnitude < .1F 
-        && Vector3.Distance(transform.position , agent.destination) < .6F);
+        yield return new WaitUntil(() => agent.velocity.magnitude < .1F
+        && Vector3.Distance(transform.position, agent.destination) < .6F);
 
-        if(soldierStates == EnumSoldierStates.move)
+        if (soldierStates == EnumSoldierStates.move)
         {
             // walk is over
             currentSoldierType.PlayAnim("idle");
@@ -107,7 +146,7 @@ public class SoldierController : MonoBehaviour
             agent.SetDestination(transform.position);
         }
 
-        
+
     }
 
     IEnumerator EnumeratorScanEnemy()
@@ -141,13 +180,13 @@ public class SoldierController : MonoBehaviour
 
         while (true)
         {
-            if(agent.enabled == false)
+            if (agent.enabled == false)
             {
                 break;
             }
 
             agent.SetDestination(enemy.transform.position);
-            
+
             float targetDistance = Vector3.Distance(transform.position, enemy.transform.position);
             if (targetDistance < attackDistance)
             {
@@ -176,16 +215,33 @@ public class SoldierController : MonoBehaviour
         currentSoldierType.PlayAnim("attack");
 
         float attackDamageDelayTime = currentSoldierType.AttackAnimStart(enemy);
+        float attackSpeed = currentSoldierType.attackSpeed;
 
 
-        yield return new WaitForSeconds(attackDamageDelayTime);
+        yield return new WaitForSeconds(attackDamageDelayTime * 1.4F);
 
         // do damage to enemy
         float damage = currentSoldierType.attackDamage;
         if (enemy.TryGetComponent<SoldierController>(out SoldierController enemySoldierController))
         {
             enemySoldierController.DoDamage(damage);
+
+            if(enemySoldierController.IsDead() && playerSoldier && enemySoldierController.GivedXp == false)
+            {
+                // kill and give xp
+                GameVariables.Instance.giveXp.GiveXpFunc(enemy.transform.position , enemySoldierController.soldierLevel);
+                enemySoldierController.GivedXp = true;
+            }
         }
+
+        // do damage to tower
+        if(enemy.TryGetComponent<TowerController>(out TowerController towerController))
+        {
+            towerController.DoDamage(damage);
+        }
+
+        //yeni bir atis yapmak icin bekle
+        yield return new WaitForSeconds(attackSpeed);
 
         // attack complete
         soldierStates = EnumSoldierStates.idle;
@@ -199,6 +255,9 @@ public class SoldierController : MonoBehaviour
         // get
         float maxHp = currentSoldierType.defaultHp;
         float currentHp = currentSoldierType.currentHp;
+
+        //hit fx
+        currentSoldierType.highlightEffect.HitFX();
 
         currentHp -= damage;
 
@@ -215,6 +274,31 @@ public class SoldierController : MonoBehaviour
         // set
         currentSoldierType.currentHp = currentHp;
 
+    }
+
+    public bool IsDead()
+    {
+        bool isDead = false;
+
+        if(currentSoldierType.currentHp == 0)
+        {
+            isDead = true;
+        }
+
+        return isDead;
+    }
+
+    public bool GivedXp
+    {
+        get
+        {
+            return givedXp;
+        }
+
+        set
+        {
+            givedXp = value;
+        }
     }
 
 

@@ -58,6 +58,7 @@ public class ObjectPool : MonoBehaviour
             // eger pooler bos ise yeni bir nesne olustur
             GameObject obj = Instantiate(prefab);
             obj.SetActive(true);
+            poolSize++;
             return obj;
         }
     }

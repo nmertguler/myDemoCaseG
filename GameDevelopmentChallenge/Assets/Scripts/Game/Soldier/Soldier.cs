@@ -1,4 +1,5 @@
 using DG.Tweening;
+using HighlightPlus;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,9 +24,10 @@ public class Soldier : MonoBehaviour
     public float attackRange;
 
     [Space(5)]
-    [SerializeField] UnityEvent attackEvent;
+    [SerializeField] UnityEvent attackStartEvent;
 
     public Animator soldierAnimator;
+    public HighlightEffect highlightEffect;
 
 
     // privates
@@ -50,7 +52,7 @@ public class Soldier : MonoBehaviour
                 break;
 
             case "attack":
-                soldierAnimator.CrossFade("attack", .2F);
+                soldierAnimator.Play("attack");
                 break;
 
             case "death":
@@ -66,7 +68,9 @@ public class Soldier : MonoBehaviour
     public float AttackAnimStart(GameObject enemy)
     {
         AnimatorStateInfo stateInfo = soldierAnimator.GetCurrentAnimatorStateInfo(0);
-        float attackDelay = stateInfo.length + .2F;
+        float attackDelay = 0.15F;
+
+        attackStartEvent?.Invoke();
 
         switch (soldierType)
         {
@@ -75,15 +79,15 @@ public class Soldier : MonoBehaviour
                 // send arrow
                 if(gameObject.TryGetComponent<ArcherArrowAttack>(out ArcherArrowAttack archerArrowAttack))
                 {
-                    DOVirtual.DelayedCall(.2F , ()=>
+                    DOVirtual.DelayedCall(attackDelay, ()=>
                     {
                         float duration = Vector3.Distance(transform.position, enemy.transform.position) / 10;
+                        attackDelay += duration;
                         archerArrowAttack.ArrowAttackStart(enemy.transform.position , duration); 
                     });
                 }
                 break;
         }
-
 
         return attackDelay;
     }
