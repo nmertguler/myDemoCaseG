@@ -8,4 +8,5 @@ public class GameVariables : Singleton<GameVariables>
     public Transform soldierHolder;
     public Camera mainCamera;
     public GiveXp giveXp;
+    public CardSelectController cardSelectController;
 }

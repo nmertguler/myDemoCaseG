@@ -337,7 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerType: 1
-  towerLevel: 0
+  towerLevel: 1
   towerColorChanger: {fileID: 5419897303915601098}
   towerModelChanger: {fileID: 1081355874256167564}
   towerSoldierSpawner: {fileID: 2179701444492034067}
@@ -346,6 +346,8 @@ MonoBehaviour:
   spawnDot: {fileID: 8642193946181894823}
   towerHpSlider: {fileID: 2284182555063488487}
   highlightEffect: {fileID: 4805349454485268023}
+  towerUpEffectAnimator: {fileID: 879467735726900237}
+  spawnBar: {fileID: 6873487269054649250}
 --- !u!114 &5419897303915601098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2820,6 +2822,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5708712366847936593}
   - component: {fileID: 4805349454485268023}
+  - component: {fileID: 879467735726900237}
+  - component: {fileID: 7920651107853675663}
   m_Layer: 0
   m_Name: TowerModel
   m_TagString: Untagged
@@ -3028,6 +3032,54 @@ MonoBehaviour:
   hitFxFadeOutDuration: 0.2
   hitFxColor: {r: 1, g: 1, b: 1, a: 1}
   hitFxRadius: 0.5
+--- !u!95 &879467735726900237
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6287227314217514768}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fc24647b89332fe44a026e08c99618c4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7920651107853675663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6287227314217514768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf247290f4080bc46bc1a33c157ba551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5677911419777913819}
+        m_TargetAssemblyTypeName: TowerController, Assembly-CSharp
+        m_MethodName: LevelModelUpdate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6412899258470300629
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,6 +18,10 @@ public class SoldierController : MonoBehaviour
     [SerializeField] EnumSoldierStates soldierStates;
     [SerializeField] float scanEnemyRadius;
 
+    [Space(5)]
+    [SerializeField] List<ClassUnitHolder> unitHolders;
+    
+
     LayerMask enemyLayerMasks;
     Coroutine scanCoroutine;
     GameObject myTower;
@@ -34,12 +38,24 @@ public class SoldierController : MonoBehaviour
     }
     public void SoldierCreate(EnumArmyType armyType, GameObject myTowerObject, EnumUnitType unitType , int unitLevel)
     {
+        // unit type
+        UnitTypeUpdate(unitType);
 
         // my tower
         myTower = myTowerObject;
 
         // level
         soldierLevel = unitLevel;
+        currentSoldierType.levelNumber = unitLevel;
+
+        // sfx
+        SfxManager.Instance.PlayClipOneShot("spawn", .5F);
+
+        // soldier color update
+        if(currentSoldierType.gameObject.TryGetComponent<SoldierColorUpdate>(out SoldierColorUpdate soldierColorUpdate))
+        {
+            soldierColorUpdate.ColorUpdate(armyType);
+        }
 
         // layer update
         playerSoldier = false;
@@ -68,6 +84,22 @@ public class SoldierController : MonoBehaviour
         {
             soldierStates = EnumSoldierStates.idle;
         });
+    }
+
+    void UnitTypeUpdate(EnumUnitType unitType)
+    {
+        foreach (var item in unitHolders)
+        {
+            item.soldierSc.gameObject.SetActive(false);
+        }
+
+        ClassUnitHolder tempUnitHolder = unitHolders.Find(a => a.unitType == unitType);
+
+        tempUnitHolder.soldierSc.gameObject.SetActive(true);
+
+        currentSoldierType = tempUnitHolder.soldierSc;
+        agent.speed = currentSoldierType.movementSpeed;
+        currentSoldierType.soldierAnimator.SetFloat("MoveSpeedMulti" , currentSoldierType.movementSpeed / 3.5F);
     }
 
     public void SoldierReset()
@@ -102,7 +134,7 @@ public class SoldierController : MonoBehaviour
         });
 
         // remove from tower soldier list
-        if(myTower.TryGetComponent<TowerController>(out TowerController towerController))
+        if(myTower != null && myTower.TryGetComponent<TowerController>(out TowerController towerController))
         {
             towerController.DeadSoldierRemoveFromList(gameObject);
         }
@@ -120,7 +152,7 @@ public class SoldierController : MonoBehaviour
 
     public void MoveToTarget(Vector3 targetPos)
     {
-        if (soldierStates != EnumSoldierStates.idle)
+        if (soldierStates != EnumSoldierStates.idle && soldierStates != EnumSoldierStates.move)
         {
             return;
         }
@@ -177,6 +209,7 @@ public class SoldierController : MonoBehaviour
         soldierStates = EnumSoldierStates.attack;
         float attackDistance = currentSoldierType.attackRange;
         transform.LookAt(enemy.transform.position);
+        TowerController towerControllerSc = enemy.GetComponent<TowerController>();
 
         while (true)
         {
@@ -185,9 +218,22 @@ public class SoldierController : MonoBehaviour
                 break;
             }
 
+            if(enemy.activeInHierarchy == false)
+            {
+                soldierStates = EnumSoldierStates.idle;
+                currentSoldierType.PlayAnim("idle");
+                break;
+            }
+
             agent.SetDestination(enemy.transform.position);
 
             float targetDistance = Vector3.Distance(transform.position, enemy.transform.position);
+            if(towerControllerSc != null)
+            {
+                // target is tower 
+                targetDistance *= .75F;
+            }
+
             if (targetDistance < attackDistance)
             {
                 agent.SetDestination(transform.position);

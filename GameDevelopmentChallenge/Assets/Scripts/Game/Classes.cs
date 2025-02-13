@@ -9,3 +9,10 @@ public class ClassSoldierValues
     public int levelNumber;
     public EnumUnitType soldierType;
 }
+
+[Serializable]
+public class ClassUnitHolder
+{
+    public EnumUnitType unitType;
+    public Soldier soldierSc;
+}

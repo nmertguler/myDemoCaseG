@@ -53,7 +53,7 @@ public class SoldierSpawner : MonoBehaviour
     {
         GameObject tempSoldier = PoolController.Instance.Soldier;
 
-        if (activeSoldier.Contains(tempSoldier) || activeSoldierValues.Count == 0)
+        if (activeSoldier.Contains(tempSoldier) || activeSoldierValues.Count == 0 || activeSoldierValues.Count == 0)
         {
             return;
         }
@@ -104,6 +104,23 @@ public class SoldierSpawner : MonoBehaviour
 
             }
         }
+    }
 
+    public void SoldierValueUp(EnumUnitType unitType)
+    {
+        ClassSoldierValues tempSoldierVal = activeSoldierValues.Find(a => a.soldierType == unitType);
+
+        if (tempSoldierVal == null)
+        {
+            tempSoldierVal = new ClassSoldierValues();
+            tempSoldierVal.soldierType = unitType;
+            tempSoldierVal.levelNumber = 1;
+
+            activeSoldierValues.Add(tempSoldierVal);
+        }
+        else
+        {
+            tempSoldierVal.levelNumber += 1;
+        }
     }
 }

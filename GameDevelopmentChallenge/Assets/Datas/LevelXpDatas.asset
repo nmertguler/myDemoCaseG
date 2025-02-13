@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelXpVariables:
   - levelNumber: 1
-    levelUpValue: 5
+    levelUpValue: 2
   stabilXpIncrease: 5

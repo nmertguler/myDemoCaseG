@@ -11,7 +11,6 @@ public class Soldier : MonoBehaviour
 {
     [Space(5)]
     public int levelNumber = 1;
-    public SoldierDatas archerData;
     public EnumUnitType soldierType;
 
     [Space(5)]
@@ -22,12 +21,16 @@ public class Soldier : MonoBehaviour
     public float attackDamage;
     public float attackSpeed;
     public float attackRange;
+    public float movementSpeed;
 
     [Space(5)]
     [SerializeField] UnityEvent attackStartEvent;
 
     public Animator soldierAnimator;
     public HighlightEffect highlightEffect;
+
+    [Space(5)]
+    [SerializeField] Animator horseAnimator;
 
 
     // privates
@@ -41,28 +44,41 @@ public class Soldier : MonoBehaviour
                 break;
 
             case "idle":
-                soldierAnimator.CrossFade("idle" , .2F);
+                soldierAnimator.Play("idle");
+                if (horseAnimator != null) HorseAnim(animName);
                 break;
 
             case "run":
                 if(!soldierAnimator.GetCurrentAnimatorStateInfo(0).IsName("run"))
                 {
-                    soldierAnimator.CrossFade("run", .2F);
+                    soldierAnimator.Play("run");
+                    if (horseAnimator != null)
+                    {
+                        HorseAnim(animName);
+                        soldierAnimator.Play("idle");
+                    }
                 }
                 break;
 
             case "attack":
                 soldierAnimator.Play("attack");
+                if (horseAnimator != null) HorseAnim("idle");
                 break;
 
             case "death":
-                soldierAnimator.CrossFade("death", .2F);
+                soldierAnimator.Play("death");
+                if (horseAnimator != null) HorseAnim(animName);
                 break;
 
             default:
                 Debug.LogError("wrong animation value");
                 break;
         }
+    }
+
+    void HorseAnim(string animName)
+    {
+        horseAnimator.Play(animName); 
     }
 
     public float AttackAnimStart(GameObject enemy)

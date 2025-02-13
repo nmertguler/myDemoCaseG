@@ -1,3 +1,4 @@
+using DG.Tweening;
 using HighlightPlus;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,12 +16,12 @@ public class TowerController : MonoBehaviour
 
     [Header("Tower Variables")]
     [SerializeField] EnumArmyType towerType;
-    [SerializeField] EnumTowerLevel towerLevel;
+    [SerializeField] int towerLevel;
 
     [Space(5)]
     [SerializeField] ColorChanger towerColorChanger;
     [SerializeField] TowerModelChanger towerModelChanger;
-    [SerializeField] SoldierSpawner towerSoldierSpawner;
+    public SoldierSpawner towerSoldierSpawner;
 
     [Space(5)]
     [SerializeField] TowerDatas towerData;
@@ -28,6 +29,9 @@ public class TowerController : MonoBehaviour
     [SerializeField] Transform spawnDot;
     [SerializeField] TowerHpSlider towerHpSlider;
     [SerializeField] HighlightEffect highlightEffect;
+    [SerializeField] Animator towerUpEffectAnimator;
+    [SerializeField] GameObject spawnBar;
+
 
     // privates
     float maxHp = 100;
@@ -37,6 +41,11 @@ public class TowerController : MonoBehaviour
     {
         LevelVariableUpdate();
         HpBarUpdate();
+
+        // color change
+        ColorUpdate();
+
+        
     }
 
     //private void OnValidate() => UnityEditor.EditorApplication.delayCall += _OnValidate;
@@ -52,6 +61,7 @@ public class TowerController : MonoBehaviour
     //    // level update
     //    LevelModelUpdate();
     //}
+
 
     // tarafina gore kalenin renklerini duzenler
     void ColorUpdate()
@@ -75,7 +85,7 @@ public class TowerController : MonoBehaviour
     }
 
     // leveline gore kale gorunusunu gunceller
-    void LevelModelUpdate()
+    public void LevelModelUpdate()
     {
         int levelNumber = ActiveLevelNumber();
 
@@ -84,25 +94,7 @@ public class TowerController : MonoBehaviour
 
     int ActiveLevelNumber()
     {
-        int levelNumber = 0;
-        switch (towerLevel)
-        {
-            case EnumTowerLevel.level1:
-                levelNumber = 1;
-                break;
-            case EnumTowerLevel.level2:
-                levelNumber = 2;
-                break;
-            case EnumTowerLevel.level3:
-                levelNumber = 3;
-                break;
-            case EnumTowerLevel.level4:
-                levelNumber = 4;
-                break;
-            case EnumTowerLevel.level5:
-                levelNumber = 5;
-                break;
-        }
+        int levelNumber = towerLevel;
 
         return levelNumber;
     }
@@ -183,6 +175,21 @@ public class TowerController : MonoBehaviour
         towerSoldierSpawner.DeadSoldierRemoveFromList(deadSoldier);
     }
 
+    public void TowerLevelUp()
+    {
+        towerLevel += 1;
+
+        towerLevel = Mathf.Clamp(towerLevel, 1, 5);
+
+        LevelVariableUpdate();
+        HpBarUpdate();
+
+        if(towerType == EnumArmyType.player)
+        {
+            towerUpEffectAnimator.Play("levelUp");
+        }
+    }
+
     void LevelVariableUpdate()
     {
         float tempMaxHp = maxHp;
@@ -190,6 +197,8 @@ public class TowerController : MonoBehaviour
         // current hp value update
         var tempVariable = towerData.towerVariables.Find(a => a.levelNumber == ActiveLevelNumber());
         maxHp = tempVariable.hpValue;
+
+        baseSpawnTime /= tempVariable.spawnMultiplierValue;
 
         currentHp += maxHp - tempMaxHp;
     }
@@ -207,6 +216,9 @@ public class TowerController : MonoBehaviour
         }
 
         currentHp -= damageValue;
+        SfxManager.Instance.PlayClipOneShot("tab", .2F);
+        SfxManager.Instance.SetHaptic(Lofelt.NiceVibrations.HapticPatterns.PresetType.LightImpact);
+
 
         highlightEffect.HitFX();
 
@@ -217,6 +229,13 @@ public class TowerController : MonoBehaviour
             // tower destroy
             gameObject.layer = LayerMask.NameToLayer("Default");
             towerSoldierSpawner.enabled = false;
+            towerHpSlider.gameObject.SetActive(false);
+            spawnBar.SetActive(false);
+
+            gameObject.transform.DOMoveY(gameObject.transform.position.y - 5 , 2).OnComplete( ()=>
+            {
+                gameObject.SetActive(false);
+            });
         }
 
         HpBarUpdate();

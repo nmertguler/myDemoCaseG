@@ -81,6 +81,7 @@ public class XpBarController : MonoBehaviour
         XpIncrease(0);
 
         // select card
+        GameVariables.Instance.cardSelectController.CardSelectShow();
     }
 
     Vector3 GetFillEndPosition()
