@@ -193,7 +193,7 @@ MonoBehaviour:
   hpBar: {fileID: 8365977152390229927}
   soldierLevel: 0
   soldierStates: 1
-  scanEnemyRadius: 4
+  scanEnemyRadius: 3.2
   unitHolders:
   - unitType: 2
     soldierSc: {fileID: 691571427013412562}

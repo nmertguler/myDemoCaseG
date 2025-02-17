@@ -53,6 +53,18 @@ PrefabInstance:
       value: _Main_Type_Archer
       objectReference: {fileID: 0}
     - target: {fileID: 7119039758107061225, guid: 97f67dfe9cac2fc438aa810ff1925315, type: 3}
+      propertyPath: currentHp
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7119039758107061225, guid: 97f67dfe9cac2fc438aa810ff1925315, type: 3}
+      propertyPath: defaultHp
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7119039758107061225, guid: 97f67dfe9cac2fc438aa810ff1925315, type: 3}
+      propertyPath: attackDamage
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7119039758107061225, guid: 97f67dfe9cac2fc438aa810ff1925315, type: 3}
       propertyPath: movementSpeed
       value: 3.5
       objectReference: {fileID: 0}

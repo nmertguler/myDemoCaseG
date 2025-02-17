@@ -77,6 +77,26 @@ public class SoldierSpawner : MonoBehaviour
         tempSoldier.GetComponent<SoldierController>().SoldierCreate(towerController.GetArmyType(), gameObject, soldierSpawn.soldierType, soldierSpawn.levelNumber);
 
         activeSoldier.Add(tempSoldier);
+
+
+        SoldierAttackControl();
+    }
+
+    void SoldierAttackControl()
+    {
+        if(towerController.towerType == EnumArmyType.player)
+        {
+            return;
+        }
+
+        int soldierCount = activeSoldier.Count;
+
+        if(soldierCount > UnityEngine.Random.Range(3,6))
+        {
+            //attack start
+            Vector3 attackTargetPos = LevelHolder.Instance.RandomEnemyPos(towerController);
+            towerController.MoveToPoint(attackTargetPos);
+        }
     }
 
     void SpawnTimeUpdate()

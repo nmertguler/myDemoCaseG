@@ -80,7 +80,16 @@ public class CardSelectController : MonoBehaviour
     {
         List<EnumUnitType> tempUnitType = new List<EnumUnitType>();
 
-        foreach (var item in activeSoldierValues)
+        List<ClassSoldierValues> tempSoldierValues = new List<ClassSoldierValues>(activeSoldierValues);
+
+        if(FirstCardSelected() == true)
+        {
+            var towerTemp = tempSoldierValues.Find(a => a.soldierType == EnumUnitType.tower);
+            tempSoldierValues.Remove(towerTemp);
+
+        }
+
+        foreach (var item in tempSoldierValues)
         {
             if (item.levelNumber < maxCardLevel)
             {
@@ -94,6 +103,26 @@ public class CardSelectController : MonoBehaviour
         }
 
         return tempUnitType;
+    }
+
+    bool FirstCardSelected()
+    {
+        bool control = true;
+
+        foreach (var item in activeSoldierValues)
+        {
+            if(item.levelNumber == 0)
+            {
+                control = true;
+            }
+            else
+            {
+                control = false;
+                break;
+            }
+        }
+
+        return control;
     }
 
     public void CardSelect(UnitCard selectedCard)

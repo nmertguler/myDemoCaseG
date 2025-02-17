@@ -15,7 +15,7 @@ public class TowerController : MonoBehaviour
 
 
     [Header("Tower Variables")]
-    [SerializeField] EnumArmyType towerType;
+    public EnumArmyType towerType;
     [SerializeField] int towerLevel;
 
     [Space(5)]
