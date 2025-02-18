@@ -183,7 +183,7 @@ public class SoldierController : MonoBehaviour
 
     public void MoveToTarget(Vector3 targetPos)
     {
-        if (soldierStates != EnumSoldierStates.idle && soldierStates != EnumSoldierStates.move)
+        if (soldierStates != EnumSoldierStates.idle && soldierStates != EnumSoldierStates.move || currentSoldierType == null)
         {
             return;
         }
