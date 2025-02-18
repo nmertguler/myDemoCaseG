@@ -74,7 +74,7 @@ public class SoldierSpawner : MonoBehaviour
 
         var soldierSpawn = activeSoldierValues[Random.Range(0, activeSoldierValues.Count)];
 
-        tempSoldier.GetComponent<SoldierController>().SoldierCreate(towerController.GetArmyType(), gameObject, soldierSpawn.soldierType, soldierSpawn.levelNumber , towerController.towerNumber);
+        tempSoldier.GetComponent<SoldierController>().SoldierInit(towerController.GetArmyType(), gameObject, soldierSpawn.soldierType, soldierSpawn.levelNumber , towerController.towerNumber);
 
         activeSoldier.Add(tempSoldier);
 

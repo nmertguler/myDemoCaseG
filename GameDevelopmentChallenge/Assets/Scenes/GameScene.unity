@@ -4286,7 +4286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 7709002497967992823, guid: 98d3a67e902fb704280c356c561f3f10, type: 3}
-  poolSize: 100
+  poolSize: 5
   levelLoadingReset: 0
 --- !u!1001 &648885786
 PrefabInstance:

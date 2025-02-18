@@ -14,5 +14,6 @@ public class ClassSoldierValues
 public class ClassUnitHolder
 {
     public EnumUnitType unitType;
-    public Soldier soldierSc;
+    //public Soldier soldierSc;
+    public string prefabAddress;
 }

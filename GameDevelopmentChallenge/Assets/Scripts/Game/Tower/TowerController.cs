@@ -49,19 +49,19 @@ public class TowerController : MonoBehaviour
         
     }
 
-    private void OnValidate() => UnityEditor.EditorApplication.delayCall += _OnValidate;
+    //private void OnValidate() => UnityEditor.EditorApplication.delayCall += _OnValidate;
 
-    private void _OnValidate()
-    {
-        UnityEditor.EditorApplication.delayCall -= _OnValidate;
-        if (this == null) return;
+    //private void _OnValidate()
+    //{
+    //    UnityEditor.EditorApplication.delayCall -= _OnValidate;
+    //    if (this == null) return;
 
-        // color change
-        ColorUpdate();
+    //    // color change
+    //    ColorUpdate();
 
-        // level update
-        LevelModelUpdate();
-    }
+    //    // level update
+    //    LevelModelUpdate();
+    //}
 
 
     // tarafina gore kalenin renklerini duzenler

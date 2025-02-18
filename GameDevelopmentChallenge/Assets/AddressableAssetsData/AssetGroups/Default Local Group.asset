@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 8b701a2b7d15aa94bb36ee08d05caacb
+  m_SerializeEntries:
+  - m_GUID: 9239e189e9090764c85b2577fe0f00fa
+    m_Address: SoldierTypes/_Main_Type_HorseMan
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8c94e17624d7e8347898b19299872d86
+    m_Address: SoldierTypes/_Main_Type_Giant
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 183bc5e4e4b360a44bc71ea0796eecef
+    m_Address: SoldierTypes/_Main_Type_SwordsMan
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ee3d77e34f48746438ab3752539a493f
+    m_Address: SoldierTypes/_Main_Type_Warrior
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 96790173435b79d4aa28f243feed048b
+    m_Address: SoldierTypes/_Main_Type_Archer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: d17945422feca204d801c4154a9e0767, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: b50749b648836724791e44486986eb49, type: 2}
+    - {fileID: 11400000, guid: c62e4de2254a831429dd7f6b66b67cb0, type: 2}

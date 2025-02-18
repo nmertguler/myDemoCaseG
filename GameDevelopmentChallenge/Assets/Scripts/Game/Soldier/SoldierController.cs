@@ -7,11 +7,15 @@ using UnityEngine.UIElements;
 using DG.Tweening;
 using Unity.Services.Analytics.Internal;
 using Unity.VisualScripting;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.PlayerLoop;
 
 public class SoldierController : MonoBehaviour
 {
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Soldier currentSoldierType;
+    [SerializeField] Transform soldierTypeHolder;
     [SerializeField] HpBar hpBar;
 
     [Space(5)]
@@ -21,7 +25,7 @@ public class SoldierController : MonoBehaviour
 
     [Space(5)]
     [SerializeField] List<ClassUnitHolder> unitHolders;
-    
+
 
     LayerMask enemyLayerMasks;
     Coroutine scanCoroutine;
@@ -37,78 +41,92 @@ public class SoldierController : MonoBehaviour
     {
         StopCoroutine(scanCoroutine);
     }
-    public void SoldierCreate(EnumArmyType armyType, GameObject myTowerObject, EnumUnitType unitType , int unitLevel , int towerNumber)
+    public void SoldierInit(EnumArmyType armyType, GameObject myTowerObject, EnumUnitType unitType, int unitLevel, int towerNumber)
     {
         // unit type
-        UnitTypeUpdate(unitType);
+        UnitTypeUpdate(armyType, myTowerObject, unitType, unitLevel, towerNumber);
 
-        // my tower
-        myTower = myTowerObject;
-
-        // level
-        soldierLevel = unitLevel;
-        currentSoldierType.levelNumber = unitLevel;
-
-        // sfx
-        SfxManager.Instance.PlayClipOneShot("spawn", .5F);
-
-        // soldier color update
-        if(currentSoldierType.gameObject.TryGetComponent<SoldierColorUpdate>(out SoldierColorUpdate soldierColorUpdate))
-        {
-            soldierColorUpdate.ColorUpdate(armyType , towerNumber);
-        }
-
-        // layer update
-        playerSoldier = false;
-        switch (armyType)
-        {
-            case EnumArmyType.player:
-                gameObject.layer = LayerMask.NameToLayer("PlayerSoldier");
-                enemyLayerMasks = LayerMask.GetMask("EnemySoldier1", "EnemySoldier2", "Tower");
-                playerSoldier = true;
-                break;
-            case EnumArmyType.enemy:
-
-                switch (towerNumber)
-                {
-                    case 0:
-                        gameObject.layer = LayerMask.NameToLayer("EnemySoldier1");
-                        enemyLayerMasks = LayerMask.GetMask("PlayerSoldier", "EnemySoldier2", "Tower");
-                        break;
-
-                    case 1:
-                        gameObject.layer = LayerMask.NameToLayer("EnemySoldier2");
-                        enemyLayerMasks = LayerMask.GetMask("PlayerSoldier", "EnemySoldier1", "Tower");
-                        break;
-                }
-                
-                break;
-            default:
-                Debug.LogError("yanlis armytype degeri geldi");
-                break;
-        }
-
-        // delay the spawn animation duration
-        DOVirtual.DelayedCall(.3F, () =>
-        {
-            soldierStates = EnumSoldierStates.idle;
-        });
     }
 
-    void UnitTypeUpdate(EnumUnitType unitType)
+    void UnitTypeUpdate(EnumArmyType armyType, GameObject myTowerObject, EnumUnitType unitType, int unitLevel, int towerNumber)
     {
-        foreach (var item in unitHolders)
+
+        GameObject tempSoldierType = null;
+        string prefabAddress = unitHolders.Find(a => a.unitType == unitType).prefabAddress;
+        Addressables.InstantiateAsync(prefabAddress).Completed += handle =>
         {
-            item.soldierSc.gameObject.SetActive(false);
-        }
+            if (handle.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
+            {
+                tempSoldierType = handle.Result;
 
-        ClassUnitHolder tempUnitHolder = unitHolders.Find(a => a.unitType == unitType);
+                currentSoldierType = tempSoldierType.GetComponent<Soldier>();
 
-        tempUnitHolder.soldierSc.gameObject.SetActive(true);
+                currentSoldierType.transform.SetParent(soldierTypeHolder);
+                currentSoldierType.transform.localPosition = Vector3.zero;
+                currentSoldierType.transform.localRotation = Quaternion.identity;
+                currentSoldierType.transform.localScale = Vector3.one;
 
-        currentSoldierType = tempUnitHolder.soldierSc;
-        agent.speed = currentSoldierType.soldierData.soldierStats.movementSpeed;
-        currentSoldierType.soldierAnimator.SetFloat("MoveSpeedMulti" , currentSoldierType.soldierData.soldierStats.movementSpeed / 3.5F);
+                agent.speed = currentSoldierType.soldierData.soldierStats.movementSpeed;
+                currentSoldierType.soldierAnimator.SetFloat("MoveSpeedMulti", currentSoldierType.soldierData.soldierStats.movementSpeed / 3.5F);
+
+                // my tower
+                myTower = myTowerObject;
+
+                // level
+                soldierLevel = unitLevel;
+                currentSoldierType.levelNumber = unitLevel;
+                currentSoldierType.CurrentHp = currentSoldierType.MaxHp;
+
+                // sfx
+                SfxManager.Instance.PlayClipOneShot("spawn", .5F);
+
+                // soldier color update
+                if (currentSoldierType.gameObject.TryGetComponent<SoldierColorUpdate>(out SoldierColorUpdate soldierColorUpdate))
+                {
+                    soldierColorUpdate.ColorUpdate(armyType, towerNumber); 
+                }
+
+                // layer update
+                playerSoldier = false;
+                switch (armyType)
+                {
+                    case EnumArmyType.player:
+                        gameObject.layer = LayerMask.NameToLayer("PlayerSoldier");
+                        enemyLayerMasks = LayerMask.GetMask("EnemySoldier1", "EnemySoldier2", "Tower");
+                        playerSoldier = true;
+                        break;
+                    case EnumArmyType.enemy:
+
+                        switch (towerNumber)
+                        {
+                            case 0:
+                                gameObject.layer = LayerMask.NameToLayer("EnemySoldier1");
+                                enemyLayerMasks = LayerMask.GetMask("PlayerSoldier", "EnemySoldier2", "Tower");
+                                break;
+
+                            case 1:
+                                gameObject.layer = LayerMask.NameToLayer("EnemySoldier2");
+                                enemyLayerMasks = LayerMask.GetMask("PlayerSoldier", "EnemySoldier1", "Tower");
+                                break;
+                        }
+
+                        break;
+                    default:
+                        Debug.LogError("yanlis armytype degeri geldi");
+                        break;
+                }
+
+                // delay the spawn animation duration
+                DOVirtual.DelayedCall(.3F, () =>
+                {
+                    soldierStates = EnumSoldierStates.idle;
+                });
+            }
+            else
+            {
+                Debug.LogError("prefab dont loaded");
+            }
+        };
     }
 
     public void SoldierReset()
@@ -122,7 +140,7 @@ public class SoldierController : MonoBehaviour
         hpBar.gameObject.SetActive(true);
         hpBar.HpBarUpdate(1);
 
-        
+
     }
 
     public void SoldierDeath()
@@ -137,13 +155,13 @@ public class SoldierController : MonoBehaviour
 
         hpBar.gameObject.SetActive(false);
 
-        transform.DOMoveY(transform.position.y - 3, 2.0F).SetDelay(1.7F).OnComplete( ()=>
+        transform.DOMoveY(transform.position.y - 3, 2.0F).SetDelay(1.7F).OnComplete(() =>
         {
             ReturnToPool();
         });
 
         // remove from tower soldier list
-        if(myTower != null && myTower.TryGetComponent<TowerController>(out TowerController towerController))
+        if (myTower != null && myTower.TryGetComponent<TowerController>(out TowerController towerController))
         {
             towerController.DeadSoldierRemoveFromList(gameObject);
         }
@@ -152,10 +170,14 @@ public class SoldierController : MonoBehaviour
     void ReturnToPool()
     {
         // reset
+        transform.DOKill();
+        Addressables.Release(currentSoldierType.gameObject);
         agent.enabled = true;
 
         // return to pool
         PoolController.Instance.Soldier = gameObject;
+
+        
     }
 
 
@@ -170,7 +192,7 @@ public class SoldierController : MonoBehaviour
         agent.enabled = true;
         agent.SetDestination(targetPos);
         currentSoldierType.PlayAnim("run");
-
+         
         StartCoroutine(EnumeratorMoveStart());
     }
 
@@ -247,7 +269,7 @@ public class SoldierController : MonoBehaviour
                 break;
             }
 
-            if(enemy.activeInHierarchy == false)
+            if (enemy.activeInHierarchy == false)
             {
                 soldierStates = EnumSoldierStates.idle;
                 currentSoldierType.PlayAnim("idle");
@@ -257,7 +279,7 @@ public class SoldierController : MonoBehaviour
             agent.SetDestination(enemy.transform.position);
 
             float targetDistance = Vector3.Distance(transform.position, enemy.transform.position);
-            if(towerControllerSc != null)
+            if (towerControllerSc != null)
             {
                 // target is tower 
                 targetDistance *= .75F;
@@ -301,16 +323,16 @@ public class SoldierController : MonoBehaviour
         {
             enemySoldierController.DoDamage(damage);
 
-            if(enemySoldierController.IsDead() && playerSoldier && enemySoldierController.GivedXp == false)
+            if (enemySoldierController.IsDead() && playerSoldier && enemySoldierController.GivedXp == false)
             {
                 // kill and give xp
-                GameVariables.Instance.giveXp.GiveXpFunc(enemy.transform.position , enemySoldierController.soldierLevel);
+                GameVariables.Instance.giveXp.GiveXpFunc(enemy.transform.position, enemySoldierController.soldierLevel);
                 enemySoldierController.GivedXp = true;
             }
         }
 
         // do damage to tower
-        if(enemy.TryGetComponent<TowerController>(out TowerController towerController))
+        if (enemy.TryGetComponent<TowerController>(out TowerController towerController))
         {
             towerController.DoDamage(damage);
         }
@@ -328,13 +350,13 @@ public class SoldierController : MonoBehaviour
     public void DoDamage(float damage)
     {
         // If he takes damage while idle, he will attack
-        if(soldierStates == EnumSoldierStates.idle || soldierStates == EnumSoldierStates.move)
+        if (soldierStates == EnumSoldierStates.idle || soldierStates == EnumSoldierStates.move)
         {
             ScanEnemy();
         }
 
         // get
-        float maxHp = currentSoldierType.soldierData.soldierStats.health ;
+        float maxHp = currentSoldierType.soldierData.soldierStats.health;
         float currentHp = currentSoldierType.CurrentHp;
 
         //hit fx
@@ -361,7 +383,7 @@ public class SoldierController : MonoBehaviour
     {
         bool isDead = false;
 
-        if(currentSoldierType.CurrentHp == 0)
+        if (currentSoldierType.CurrentHp == 0)
         {
             isDead = true;
         }
