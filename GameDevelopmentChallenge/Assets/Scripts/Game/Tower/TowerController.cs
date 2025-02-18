@@ -136,7 +136,7 @@ public class TowerController : MonoBehaviour
         List<GameObject> movementSoldierList = new List<GameObject>(towerSoldierSpawner.GetMovementSoldierList());
         //List<Vector3> positions = GetRandomPointsInCircle(movePosition, .1F * activeSoldierList.Count, activeSoldierList.Count);
         Vector3 dir = transform.position-  movePosition;
-        List<Vector3> positions = GameVariables.Instance.attackPattern.GetPattern(movePosition, dir, movementSoldierList.Count, .6F);
+        List<Vector3> positions = GameVariables.Instance.attackPattern.GetPattern(movePosition, dir, movementSoldierList.Count, .45F);
 
 
         foreach (var item in movementSoldierList)
@@ -147,29 +147,6 @@ public class TowerController : MonoBehaviour
                 positions.RemoveAt(0);
             }
         }
-    }
-
-    // noktanin etrafindan noktalar secer boylece hareket eden soldier'lar ic ice gecmezler
-    List<Vector3> GetRandomPointsInCircle(Vector3 center, float maxRadius, int count)
-    {
-        List<Vector3> points = new List<Vector3>();
-
-        for (int i = 0; i < count; i++)
-        {
-            // Rastgele bir mesafe (0 ile maxRadius arasýnda)
-            float radius = Random.Range(0f, maxRadius);
-
-            // Rastgele bir açý (0 ile 2 * PI arasýnda)
-            float angle = Random.Range(0f, 2 * Mathf.PI);
-
-            // X ve Z koordinatlarýný hesapla
-            float x = center.x + radius * Mathf.Cos(angle);
-            float z = center.z + radius * Mathf.Sin(angle);
-
-            points.Add(new Vector3(x, center.y, z));
-        }
-
-        return points;
     }
 
 

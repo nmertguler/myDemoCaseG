@@ -209,22 +209,27 @@ public class SoldierController : MonoBehaviour
     {
         while (true)
         {
-            if (soldierStates == EnumSoldierStates.idle || soldierStates == EnumSoldierStates.move)
+            if (soldierStates == EnumSoldierStates.idle)
             {
-                Collider[] enemies = Physics.OverlapSphere(transform.position, scanEnemyRadius, enemyLayerMasks);
-                enemies = enemies.Where(e => e.gameObject != myTower).ToArray();
-
-                if (enemies.Length > 0)
-                {
-                    GameObject closestEnemy = enemies.ToList().Select(e => e.gameObject)
-                        .OrderBy(go => Vector3.Distance(transform.position, go.transform.position))
-                        .FirstOrDefault();
-
-                    StartCoroutine(AttackTheEnemy(closestEnemy));
-                }
+                ScanEnemy();
             }
 
             yield return new WaitForSeconds(.3F);
+        }
+    }
+
+    void ScanEnemy()
+    {
+        Collider[] enemies = Physics.OverlapSphere(transform.position, scanEnemyRadius, enemyLayerMasks);
+        enemies = enemies.Where(e => e.gameObject != myTower).ToArray();
+
+        if (enemies.Length > 0)
+        {
+            GameObject closestEnemy = enemies.ToList().Select(e => e.gameObject)
+                .OrderBy(go => Vector3.Distance(transform.position, go.transform.position))
+                .FirstOrDefault();
+
+            StartCoroutine(AttackTheEnemy(closestEnemy));
         }
     }
 
@@ -322,6 +327,12 @@ public class SoldierController : MonoBehaviour
 
     public void DoDamage(float damage)
     {
+        // If he takes damage while idle, he will attack
+        if(soldierStates == EnumSoldierStates.idle || soldierStates == EnumSoldierStates.move)
+        {
+            ScanEnemy();
+        }
+
         // get
         float maxHp = currentSoldierType.soldierData.soldierStats.health ;
         float currentHp = currentSoldierType.CurrentHp;
