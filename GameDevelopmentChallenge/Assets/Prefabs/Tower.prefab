@@ -337,6 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerType: 1
+  towerNumber: 0
   towerLevel: 1
   towerColorChanger: {fileID: 5419897303915601098}
   towerModelChanger: {fileID: 1081355874256167564}

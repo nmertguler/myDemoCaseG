@@ -144,12 +144,12 @@ public class CardSelectController : MonoBehaviour
         if(cardType == EnumUnitType.tower)
         {
             // tower up
-            LevelHolder.Instance.playerTower.TowerLevelUp();
+            LevelHolder.Instance.GetPlayerTower().TowerLevelUp();
         }
         else
         {
             // soldier up
-            LevelHolder.Instance.playerTower.towerSoldierSpawner.SoldierValueUp(cardType);
+            LevelHolder.Instance.GetPlayerTower().towerSoldierSpawner.SoldierValueUp(cardType);
         }
         
 

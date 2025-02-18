@@ -3,7 +3,6 @@ public enum EnumArmyType
     none,
     player,
     enemy,
-    enemy2
 }
 
 public enum EnumUnitType

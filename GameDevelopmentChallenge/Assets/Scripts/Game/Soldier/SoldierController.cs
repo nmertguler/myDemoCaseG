@@ -6,6 +6,7 @@ using UnityEngine.AI;
 using UnityEngine.UIElements;
 using DG.Tweening;
 using Unity.Services.Analytics.Internal;
+using Unity.VisualScripting;
 
 public class SoldierController : MonoBehaviour
 {
@@ -36,7 +37,7 @@ public class SoldierController : MonoBehaviour
     {
         StopCoroutine(scanCoroutine);
     }
-    public void SoldierCreate(EnumArmyType armyType, GameObject myTowerObject, EnumUnitType unitType , int unitLevel)
+    public void SoldierCreate(EnumArmyType armyType, GameObject myTowerObject, EnumUnitType unitType , int unitLevel , int towerNumber)
     {
         // unit type
         UnitTypeUpdate(unitType);
@@ -54,7 +55,7 @@ public class SoldierController : MonoBehaviour
         // soldier color update
         if(currentSoldierType.gameObject.TryGetComponent<SoldierColorUpdate>(out SoldierColorUpdate soldierColorUpdate))
         {
-            soldierColorUpdate.ColorUpdate(armyType);
+            soldierColorUpdate.ColorUpdate(armyType , towerNumber);
         }
 
         // layer update
@@ -67,12 +68,20 @@ public class SoldierController : MonoBehaviour
                 playerSoldier = true;
                 break;
             case EnumArmyType.enemy:
-                gameObject.layer = LayerMask.NameToLayer("EnemySoldier1");
-                enemyLayerMasks = LayerMask.GetMask("PlayerSoldier", "EnemySoldier2", "Tower");
-                break;
-            case EnumArmyType.enemy2:
-                gameObject.layer = LayerMask.NameToLayer("EnemySoldier2");
-                enemyLayerMasks = LayerMask.GetMask("PlayerSoldier", "EnemySoldier1", "Tower");
+
+                switch (towerNumber)
+                {
+                    case 0:
+                        gameObject.layer = LayerMask.NameToLayer("EnemySoldier1");
+                        enemyLayerMasks = LayerMask.GetMask("PlayerSoldier", "EnemySoldier2", "Tower");
+                        break;
+
+                    case 1:
+                        gameObject.layer = LayerMask.NameToLayer("EnemySoldier2");
+                        enemyLayerMasks = LayerMask.GetMask("PlayerSoldier", "EnemySoldier1", "Tower");
+                        break;
+                }
+                
                 break;
             default:
                 Debug.LogError("yanlis armytype degeri geldi");
@@ -163,6 +172,21 @@ public class SoldierController : MonoBehaviour
         currentSoldierType.PlayAnim("run");
 
         StartCoroutine(EnumeratorMoveStart());
+    }
+
+    public bool MoveControl()
+    {
+        // true: can movement
+        // false: blocked
+
+        bool control = true;
+
+        if (soldierStates != EnumSoldierStates.idle && soldierStates != EnumSoldierStates.move)
+        {
+            control = false;
+        }
+
+        return control;
     }
 
     IEnumerator EnumeratorMoveStart()

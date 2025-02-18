@@ -16,6 +16,7 @@ public class TowerController : MonoBehaviour
 
     [Header("Tower Variables")]
     public EnumArmyType towerType;
+    public int towerNumber = 0;
     [SerializeField] int towerLevel;
 
     [Space(5)]
@@ -48,19 +49,19 @@ public class TowerController : MonoBehaviour
         
     }
 
-    //private void OnValidate() => UnityEditor.EditorApplication.delayCall += _OnValidate;
+    private void OnValidate() => UnityEditor.EditorApplication.delayCall += _OnValidate;
 
-    //private void _OnValidate()
-    //{
-    //    UnityEditor.EditorApplication.delayCall -= _OnValidate;
-    //    if (this == null) return;
+    private void _OnValidate()
+    {
+        UnityEditor.EditorApplication.delayCall -= _OnValidate;
+        if (this == null) return;
 
-    //    // color change
-    //    ColorUpdate();
+        // color change
+        ColorUpdate();
 
-    //    // level update
-    //    LevelModelUpdate();
-    //}
+        // level update
+        LevelModelUpdate();
+    }
 
 
     // tarafina gore kalenin renklerini duzenler
@@ -76,10 +77,16 @@ public class TowerController : MonoBehaviour
                 break;
 
             case EnumArmyType.enemy:
-                towerColorChanger.ColorChangeFunc("enemyTowerMaterial");
-                break;
-            case EnumArmyType.enemy2:
-                towerColorChanger.ColorChangeFunc("enemyTowerMaterial2");
+                switch (towerNumber)
+                {
+                    case 0:
+                        towerColorChanger.ColorChangeFunc("enemyTowerMaterial");
+                        break;
+
+                    case 1:
+                        towerColorChanger.ColorChangeFunc("enemyTowerMaterial2");
+                        break;
+                }
                 break;
         }
     }
@@ -126,11 +133,13 @@ public class TowerController : MonoBehaviour
 
     public void MoveToPoint(Vector3 movePosition)
     {
-        List<GameObject> activeSoldierList = new List<GameObject>(towerSoldierSpawner.GetActiveSoldierList());
-        List<Vector3> positions = GetRandomPointsInCircle(movePosition, .1F * activeSoldierList.Count, activeSoldierList.Count);
+        List<GameObject> movementSoldierList = new List<GameObject>(towerSoldierSpawner.GetMovementSoldierList());
+        //List<Vector3> positions = GetRandomPointsInCircle(movePosition, .1F * activeSoldierList.Count, activeSoldierList.Count);
+        Vector3 dir = transform.position-  movePosition;
+        List<Vector3> positions = GameVariables.Instance.attackPattern.GetPattern(movePosition, dir, movementSoldierList.Count, .6F);
 
 
-        foreach (var item in activeSoldierList)
+        foreach (var item in movementSoldierList)
         {
             if (item.TryGetComponent(out SoldierController soldierController))
             {

@@ -11,7 +11,7 @@ public class SoldierColorUpdate : MonoBehaviour
 
 
 
-    public void ColorUpdate(EnumArmyType armyType)
+    public void ColorUpdate(EnumArmyType armyType , int towerNumber)
     {
         Material material = null;
         switch (armyType)
@@ -20,10 +20,17 @@ public class SoldierColorUpdate : MonoBehaviour
                 material = playerMaterial;
                 break;
             case EnumArmyType.enemy:
-                material = enemy1Material;
-                break;
-            case EnumArmyType.enemy2:
-                material = enemy2Material;
+
+                switch (towerNumber)
+                {
+                    case 0:
+                        material = enemy1Material;
+                        break;
+                    case 1:
+                        material = enemy2Material;
+                        break;
+                }
+                
                 break;
         }
 
