@@ -74,7 +74,7 @@ public class SoldierSpawner : MonoBehaviour
 
         var soldierSpawn = activeSoldierValues[Random.Range(0, activeSoldierValues.Count)];
 
-        tempSoldier.GetComponent<SoldierController>().SoldierCreate(towerController.GetArmyType(), gameObject, soldierSpawn.soldierType, soldierSpawn.levelNumber);
+        tempSoldier.GetComponent<SoldierController>().SoldierCreate(towerController.GetArmyType(), gameObject, soldierSpawn.soldierType, soldierSpawn.levelNumber , towerController.towerNumber);
 
         activeSoldier.Add(tempSoldier);
 
@@ -104,9 +104,21 @@ public class SoldierSpawner : MonoBehaviour
         currentSpawnValue = towerController.GetActiveSpawnTime();
     }
 
-    public List<GameObject> GetActiveSoldierList()
+    public List<GameObject> GetMovementSoldierList()
     {
-        return activeSoldier;
+        List<GameObject> tempMovementSoldiers = new List<GameObject>();
+
+        for (int i = 0; i < activeSoldier.Count; i++)
+        {
+            bool control = activeSoldier[i].GetComponent<SoldierController>().MoveControl();
+
+            if(control)
+            {
+                tempMovementSoldiers.Add(activeSoldier[i]);
+            }
+        }
+
+        return tempMovementSoldiers;
     }
 
     public void DeadSoldierRemoveFromList(GameObject deadSoldier)

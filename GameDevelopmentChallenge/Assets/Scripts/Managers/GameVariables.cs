@@ -9,4 +9,5 @@ public class GameVariables : Singleton<GameVariables>
     public Camera mainCamera;
     public GiveXp giveXp;
     public CardSelectController cardSelectController;
+    public AttackPattern attackPattern;
 }
