@@ -7,13 +7,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SoldierDatas", menuName = "ScriptableObjects/Datas/SoldierDatas", order = 1)]
 public class SoldierDatas : ScriptableObject
 {
-    public List<SoldierVariables> unityVariablesLevelBase;
+    public SoldierVariables soldierStats; 
 }
 
 [Serializable]
 public class SoldierVariables
 {
-    public int levelNumber;
-    public float attackSpeedMultiplier;
-    public float hpMultiplier;
+    public float health;
+    public float attackDamage;
+    public float attackSpeed;
+    public float attackRange;
+    public float movementSpeed;
 }

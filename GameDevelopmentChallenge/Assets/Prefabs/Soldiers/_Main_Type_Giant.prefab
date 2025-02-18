@@ -1688,6 +1688,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7119039758107061225, guid: 97f67dfe9cac2fc438aa810ff1925315, type: 3}
+      propertyPath: soldierData
+      value: 
+      objectReference: {fileID: 11400000, guid: 91bb8104f083c0b4a8b183868a02ebbe, type: 2}
+    - target: {fileID: 7119039758107061225, guid: 97f67dfe9cac2fc438aa810ff1925315, type: 3}
       propertyPath: soldierType
       value: 3
       objectReference: {fileID: 0}

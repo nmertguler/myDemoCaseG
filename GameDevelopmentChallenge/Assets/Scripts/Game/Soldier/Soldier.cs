@@ -14,14 +14,7 @@ public class Soldier : MonoBehaviour
     public EnumUnitType soldierType;
 
     [Space(5)]
-    public float defaultHp;
-    public float currentHp;
-
-    [Space(5)]
-    public float attackDamage;
-    public float attackSpeed;
-    public float attackRange;
-    public float movementSpeed;
+    public SoldierDatas soldierData;
 
     [Space(5)]
     [SerializeField] UnityEvent attackStartEvent;
@@ -35,6 +28,36 @@ public class Soldier : MonoBehaviour
 
     // privates
     ArcherArrowAttack archerArrowAttack;
+    float currentHp;
+
+    public float CurrentHp
+    {
+        get
+        {
+            return currentHp;
+        }
+        set
+        {
+            currentHp = value;
+        }
+    }
+
+    public float MaxHp
+    {
+        get
+        {
+            return soldierData.soldierStats.health * 1.1F * levelNumber;
+        }
+    }
+
+    public float AttackDamage
+    {
+        get
+        {
+            return soldierData.soldierStats.attackDamage * 1.1F * levelNumber;
+        }
+    }
+
 
     public void PlayAnim(string animName)
     {
@@ -49,7 +72,7 @@ public class Soldier : MonoBehaviour
                 break;
 
             case "run":
-                if(!soldierAnimator.GetCurrentAnimatorStateInfo(0).IsName("run"))
+                if (!soldierAnimator.GetCurrentAnimatorStateInfo(0).IsName("run"))
                 {
                     soldierAnimator.Play("run");
                     if (horseAnimator != null)
@@ -78,7 +101,7 @@ public class Soldier : MonoBehaviour
 
     void HorseAnim(string animName)
     {
-        horseAnimator.Play(animName); 
+        horseAnimator.Play(animName);
     }
 
     public float AttackAnimStart(GameObject enemy)
@@ -93,13 +116,13 @@ public class Soldier : MonoBehaviour
             case EnumUnitType.archer:
 
                 // send arrow
-                if(gameObject.TryGetComponent<ArcherArrowAttack>(out ArcherArrowAttack archerArrowAttack))
+                if (gameObject.TryGetComponent<ArcherArrowAttack>(out ArcherArrowAttack archerArrowAttack))
                 {
-                    DOVirtual.DelayedCall(attackDelay, ()=>
+                    DOVirtual.DelayedCall(attackDelay, () =>
                     {
                         float duration = Vector3.Distance(transform.position, enemy.transform.position) / 10;
                         attackDelay += duration;
-                        archerArrowAttack.ArrowAttackStart(enemy.transform.position , duration); 
+                        archerArrowAttack.ArrowAttackStart(enemy.transform.position, duration);
                     });
                 }
                 break;

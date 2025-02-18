@@ -61,6 +61,10 @@ PrefabInstance:
       value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 7119039758107061225, guid: 97f67dfe9cac2fc438aa810ff1925315, type: 3}
+      propertyPath: soldierData
+      value: 
+      objectReference: {fileID: 11400000, guid: b65f53223e928ae42b2637d9afe18da2, type: 2}
+    - target: {fileID: 7119039758107061225, guid: 97f67dfe9cac2fc438aa810ff1925315, type: 3}
       propertyPath: attackDamage
       value: 4
       objectReference: {fileID: 0}

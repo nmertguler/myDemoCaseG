@@ -107,8 +107,8 @@ public class SoldierController : MonoBehaviour
         tempUnitHolder.soldierSc.gameObject.SetActive(true);
 
         currentSoldierType = tempUnitHolder.soldierSc;
-        agent.speed = currentSoldierType.movementSpeed;
-        currentSoldierType.soldierAnimator.SetFloat("MoveSpeedMulti" , currentSoldierType.movementSpeed / 3.5F);
+        agent.speed = currentSoldierType.soldierData.soldierStats.movementSpeed;
+        currentSoldierType.soldierAnimator.SetFloat("MoveSpeedMulti" , currentSoldierType.soldierData.soldierStats.movementSpeed / 3.5F);
     }
 
     public void SoldierReset()
@@ -117,7 +117,7 @@ public class SoldierController : MonoBehaviour
 
         givedXp = false;
 
-        currentSoldierType.currentHp = currentSoldierType.defaultHp;
+        currentSoldierType.CurrentHp = currentSoldierType.soldierData.soldierStats.health;
 
         hpBar.gameObject.SetActive(true);
         hpBar.HpBarUpdate(1);
@@ -231,7 +231,7 @@ public class SoldierController : MonoBehaviour
     IEnumerator AttackTheEnemy(GameObject enemy)
     {
         soldierStates = EnumSoldierStates.attack;
-        float attackDistance = currentSoldierType.attackRange;
+        float attackDistance = currentSoldierType.soldierData.soldierStats.attackRange;
         transform.LookAt(enemy.transform.position);
         TowerController towerControllerSc = enemy.GetComponent<TowerController>();
 
@@ -285,13 +285,13 @@ public class SoldierController : MonoBehaviour
         currentSoldierType.PlayAnim("attack");
 
         float attackDamageDelayTime = currentSoldierType.AttackAnimStart(enemy);
-        float attackSpeed = currentSoldierType.attackSpeed;
+        float attackSpeed = currentSoldierType.soldierData.soldierStats.attackSpeed;
 
 
         yield return new WaitForSeconds(attackDamageDelayTime * 1.4F);
 
         // do damage to enemy
-        float damage = currentSoldierType.attackDamage;
+        float damage = currentSoldierType.AttackDamage;
         if (enemy.TryGetComponent<SoldierController>(out SoldierController enemySoldierController))
         {
             enemySoldierController.DoDamage(damage);
@@ -323,8 +323,8 @@ public class SoldierController : MonoBehaviour
     public void DoDamage(float damage)
     {
         // get
-        float maxHp = currentSoldierType.defaultHp;
-        float currentHp = currentSoldierType.currentHp;
+        float maxHp = currentSoldierType.soldierData.soldierStats.health ;
+        float currentHp = currentSoldierType.CurrentHp;
 
         //hit fx
         currentSoldierType.highlightEffect.HitFX();
@@ -342,7 +342,7 @@ public class SoldierController : MonoBehaviour
         hpBar.HpBarUpdate(currentHp / maxHp);
 
         // set
-        currentSoldierType.currentHp = currentHp;
+        currentSoldierType.CurrentHp = currentHp;
 
     }
 
@@ -350,7 +350,7 @@ public class SoldierController : MonoBehaviour
     {
         bool isDead = false;
 
-        if(currentSoldierType.currentHp == 0)
+        if(currentSoldierType.CurrentHp == 0)
         {
             isDead = true;
         }
