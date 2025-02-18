@@ -19,23 +19,35 @@ public class WalkCommandManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && clickBlock == false)
-        {
-            if(Time.timeScale == 0)
-            {
-                return;
-            }
+        if (Time.timeScale == 0 || clickBlock || !Input.GetKeyDown(KeyCode.Mouse0))
+            return;
 
-            Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 500, clickLayerMask))
-            {
-                // todo: move to hit.point
-                LevelHolder.Instance.playerTower.MoveToPoint(hit.point);
-                targetFlag.transform.position = hit.point;
-                targetFlagAnimator.Play("FlagMove");
-                SfxManager.Instance.SetHaptic(Lofelt.NiceVibrations.HapticPatterns.PresetType.LightImpact);
-            }
+        Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, 500, clickLayerMask))
+        {
+            HandleMoveAction(hit.point);
         }
+
+
     }
+
+    private void HandleMoveAction(Vector3 targetPosition)
+    {
+        // move to position
+        LevelHolder.Instance.GetPlayerTower().MoveToPoint(targetPosition);
+
+        // flag animation
+        targetFlag.transform.position = targetPosition;
+        targetFlagAnimator.Play("FlagMove");
+
+        // haptic
+        HandleHapticFeedback(); 
+    }
+
+    private void HandleHapticFeedback()
+    {
+        SfxManager.Instance.SetHaptic(Lofelt.NiceVibrations.HapticPatterns.PresetType.LightImpact);
+    }
+
+
 }
